@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /ar/404.html
+
+Sitemap: https://cortec-me.com/sitemap.xml

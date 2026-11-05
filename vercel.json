@@ -1,0 +1,976 @@
+{
+ "cleanUrls": false,
+ "trailingSlash": true,
+ "redirects": [
+  {
+   "source": "/above-ground-tank-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/advantages-of-cathodic-protection-for-enhancing-the-longevity-of-critical-infrastructure",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/armored-vehicles-surface-treatment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/asset-integrity-assurance",
+   "destination": "/solutions/",
+   "permanent": true
+  },
+  {
+   "source": "/auto-part-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/automotive-parts-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/bearing-parts-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/blogs",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/boiler-and-hot-well-corrosion-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/boris-in-dubai",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/boris-miksic-keynote-speaker-at-corrosion-uae",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/brochures",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/building-restoration-with-cortec-system",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/burj-alfardan",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/bus-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/can-paper-stop-corrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/carbon-steel-can-corrosion-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/case-hist-case-history-vpci-386-water-based-barrier-coating-for-concrete",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/case-studies",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/case-study-multi-level-parking-structure-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/cleaning-and-preservation-of-spare-parts",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/cleaning-of-crude-oil-compressor-at-adco-by-serck-services-using-cortec-vpci-products",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/client",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/cold-stack-preservation-of-jack-up-rig",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/collectible-car-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/concrete-durability-admixture",
+   "destination": "/protection-of-reinforced-concrete-structures/",
+   "permanent": true
+  },
+  {
+   "source": "/concrete-repair-strategies-to-combat-corrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/concrete-repairs-with-cortec-mci-technology",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/contact-us",
+   "destination": "/contact/",
+   "permanent": true
+  },
+  {
+   "source": "/cooling-tower-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/copper-pipe-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/cor-pak-vpci-static-dissipative-bubbles-film-available-at-cortec-warehouse",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/corrologic-logical-solution-to-soil-side-corrosion",
+   "destination": "/protection-of-aboveground-storage-tanks/",
+   "permanent": true
+  },
+  {
+   "source": "/corrosion-mitigation-in-underground-condo-parking-garage",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/corrosion-protection-system-for-crated-machines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-adds-extra-vpci-protection-corrosion-inhibiting-coating",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-boosts-product-range",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-coating-solutions-replace-hazardous-chemicals",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-corrosion-inhibiting-additive-diesel-fuel-tanks-and-systems",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-forever-changes-the-anticorrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-gears-up-to-support-drilling-companies-for-rig-stacking",
+   "destination": "/rig-stacking/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-helps-aging-old-assets",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-middle-east-featured-in-fluid-handling-magazine",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-middle-east-features-in-material-performance-magazine-march-2021-issue",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-middle-east-great-success-at-adipec-one-of-worlds-most-influential-events",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-offers-environmentally-friendly-preservation-system-for-ship-owners-and-operators-facing-pandemic-challenges",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-outlines-three-easy-ways-to-mitigate-corrosion-on-electricals",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-paper-featured-in-june-issue-of-materials-performance",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-presents-detailed-guidelines-for-layup-of-offshore-drilling-rigs-in-uncertain-times",
+   "destination": "/rig-stacking/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-presents-ecoshield-vpci-144",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-rd",
+   "destination": "/about-us/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-rolls-out-ready-to-use-rust-preventative",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortec-worlds-fastest-growing-manufacturer-of-corrosion-inhibitors",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortecs-advanced-mci-technology-overpasses-and-bridge",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/cortecs-mothballing-handbook",
+   "destination": "/mothballing/",
+   "permanent": true
+  },
+  {
+   "source": "/cortecs-vpci-389-outdoor-multi-metal-corrosion-protection",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/covid-19s-effect-on-large-buildings",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/crane-derrick-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/create-your-own-outdoor-storage-kit",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/critical-spares-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/deira-waterfront-redevelopment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/durability-the-cornerstone-of-sustainable-construction",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/engineering-and-field-service",
+   "destination": "/solutions/",
+   "permanent": true
+  },
+  {
+   "source": "/enhance-the-service-life-of-vulnerable-concrete-structures-with-mci-technology",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/equipment-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/everything-you-need-to-know-about-concrete-repair",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/extending-plow-salt-truck-service-life",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/extending-service-life-charleswood-bridge",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/extending-service-life-of-stay-cables",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/fakeeh-academic-medical-center",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/five-ways-to-replace-traditional-polyethylene",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/fuel-storage-tank-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/galvanized-iron-roofing-sheet-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/gas-and-oil-equipment-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/gas-injection-platform-gip-preservation-for-dubai-petroleum-by-lamprell",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/give-new-life-to-rusty-bearings-with-cortec-vpci-422",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/golf-club-shaft-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/heat-exchanger-protection-2",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/high-rise-building-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/high-technology-vapor-phase-corrosion-inhibiting-films-and-bags-patented-worldwide-multi-metal-vpci-systems",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/home",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/how-cortec-middle-east-protects-metal-assets-from-corrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-prevent-rust-on-spare-marine-engine-crankshaft",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/how-turn-outdoor-storage-space-into-safe-haven-for-metal-preservation",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/hydrotesting-metering-station-pipework",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/improved-protection-of-trasmission-parts",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/industrial-rust-prevention",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/join-our-teams",
+   "destination": "/about-us/",
+   "permanent": true
+  },
+  {
+   "source": "/knitting-machine-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/long-term-layup-optimum-long-term-layup-program-at-a-bhp-copper-mine",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/long-term-preservation-layup-and-mothballing",
+   "destination": "/mothballing/",
+   "permanent": true
+  },
+  {
+   "source": "/long-term-preservation-layup-and-mothballing-case-history-vpci-386-clear-vpci-309-powder",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/meeting-air-pollution-requirements",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/migratory-corrosion-inhibitor-products-for-concrete-case-history-vpci-386-mci-2000-2020",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/mitigate-corrosion-with-cortec-equipment-preservation-solutions",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/new-construction-preservation-using-mci-corshield",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/news",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/office-chair-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/one-less-thing-to-worry-about-with-the-global-supply-chain-backup",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/park-view-saadiyat",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/parking-garage-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/parking-garage-preservation-mci-2020",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/pentagon-wall-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/pipe-spool-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/pipeline-corrosion-cathodic-protection",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/plankenton-avenue-parking-ramp-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/port-views-residence",
+   "destination": "/port-views-residence-2/",
+   "permanent": true
+  },
+  {
+   "source": "/post-tensioning-protection-of-the-samuel-de-champlain-bridge",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/power-plant-equipment-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-bop-equipment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-crude-oil-gas-modules",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-crude-oil-gas-modules-by-lamprell-through-petrofac-to-zadco",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-heat-recovery-steam-generation-tube-bundles",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-j-tubes-on-offshore-jackets",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-jack-up-rig",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-land-rig-in-algeria",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-land-rig-in-kuwait",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-subsea-pipelines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preservation-of-synchronous-motor-generator-accessories",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/preserving-damaged-rebar-in-dubai-creek-harbor-utility-project",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/privacy-policy",
+   "destination": "/privacy/",
+   "permanent": true
+  },
+  {
+   "source": "/protect-sensitive-devices-from-moisture-mold",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/protect-the-valves-during-hydro-testing-and-transportation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protecting-a-national-asset-burj-khalifa-towers-with-a-100-year-design-life",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/protecting-annular-apaces-of-double-wall-storage-tanks",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protecting-chemical-equipment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protecting-lock-mechanisms-of-safes",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-aboveground-storage-tanks-2",
+   "destination": "/protection-of-aboveground-storage-tanks/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-cast-iron-brake-rotors",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-coils-and-stacks",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-electrical-cabinets",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-fuel-injection-parts",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-gear-boxes",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-reconditioned-stamping-machines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-snowmobile-engines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-steel-for-export-shipment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/protection-of-v-6-engines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/railroad-bridge-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/refinery-equipment-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/remove-rust-inexpensively-effectively-adding-corrosion-protection",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/request-a-webinar",
+   "destination": "/solutions/",
+   "permanent": true
+  },
+  {
+   "source": "/restoration-of-bullet-train-structures",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/restoration-of-corroded-truck-drive-shafts",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/rotor-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/rove-hotel-application",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/rudder-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/rust-removal-and-cleaning-of-pipes",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/s-69-p-in-a-closed-loop-heating-system",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/save-time-and-money-with-cortecs-ecoclean-biodegradable",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/seasonal-boiler-layup-at-alabama-theatre",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/seawater-hydrotesting-corrosion-protection-vpci-643",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/shrink-wrapping-for-gas-turbines",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/six-tips-for-maintaining-dip-tank-health",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/soil-side-corrosion-on-storage-tank-bottoms",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/spare-a-thought-for-critical-spares-cortec",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/spare-parts-components-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/spare-parts-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/spare-rotors-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/state-of-the-art-plant-in-europe-built-using-greatest-coating-system-in-the-world",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/stay-nimble-in-unpredictable-markets",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-bar-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-coil-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-coil-protection-during-worldwide-export-shipping",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-pipe-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-plate-corrosion-protection-in-shipment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-sheet-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steel-structure-bolt-and-flange-protection",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/steering-gear-and-axle-shipment",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/storage-tank-preservation",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/the-armor-against-rust-understanding-the-role-of-rust-primers",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/the-cortec-story",
+   "destination": "/about-us/",
+   "permanent": true
+  },
+  {
+   "source": "/the-cortec-story-2",
+   "destination": "/about-us/",
+   "permanent": true
+  },
+  {
+   "source": "/the-warsan-souk",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/three-reasons-to-protect-boilers-from-corrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/tips-for-bearings-manufacturers-easy-ways-to-prevent-corrosion-in-process",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/top-benefits-of-using-anti-corrosion-paint",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/truck-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/tube-bundle-and-rotor-preservation",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/turbine-base-plate-restoration",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/turning-tables-valve-corrosion",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/uae-leaders-in-building-durable-structures-in-the-middle-east",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/unleash-the-migrating-corrosion-inhibitor-power-of-mci-water-repellents",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/vapor-phase-corrosion-inhibiting-powder",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/vida-residence-downtown",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/videos",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/vivanta-by-taj-hotel-in-jlt",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/vpci-126-corrcap-with-ap-with-custom-closure",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/vpci-149-corrosion-inhibiting-paper",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/weathering-the-storm-in-the-oil-gas-industry-with-cortec-preservation-technology",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/wet-lay-up-of-district-cooling-plant",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
+   "source": "/what-is-a-corrosion-inhibitor",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/why-use-heat-staking-for-plastic-assembly-projects",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/worlds-largest-producer-of-anticorrosion-packaging",
+   "destination": "/media/",
+   "permanent": true
+  },
+  {
+   "source": "/your-source-for-long-term-oil-gas-preservation-solutions",
+   "destination": "/media/",
+   "permanent": true
+  }
+ ]
+}
