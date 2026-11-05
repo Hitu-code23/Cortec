@@ -253,14 +253,24 @@ document.addEventListener('click',e=>{
   if(tr){const p=PRODUCTS[tr.dataset.tdsreq];prefill('general',{message:ui('tdsMsg')(p.n)})}
 });
 
+/* ---------- "show more" for long grids (case studies, news) ---------- */
+function pager(id){
+  const g=document.getElementById(id);if(!g||!g.dataset.page)return null;
+  const step=+g.dataset.page;let shown=step;
+  const btn=document.querySelector(`.js-more[data-for="${id}"]`),wrap=btn&&btn.closest('.js-more-row');
+  const vis=()=>[...g.children].filter(x=>!x.classList.contains('out'));
+  const apply=()=>{const items=vis();items.forEach((x,i)=>x.classList.toggle('pg-hide',i>=shown));$$('.out',g).forEach(x=>x.classList.remove('pg-hide'));if(wrap)wrap.hidden=items.length<=shown;if(hasG)ScrollTrigger.refresh()};
+  if(btn)btn.addEventListener('click',()=>{const before=shown;shown+=step;apply();const fresh=vis().slice(before,shown);if(fresh[0]){const f=fresh[0].querySelector('a,[tabindex]')||fresh[0];if(f.focus)f.focus({preventScroll:true})}if(hasG&&!reduce)gsap.fromTo(fresh,{opacity:0,y:30},{opacity:1,y:0,duration:.7,stagger:.04,ease:'expo.out'});else fresh.forEach(x=>{x.style.opacity=1})});
+  apply();return {reset(){shown=step;apply()}};
+}
 /* ---------- case-study and article filters ---------- */
-function tabFilter(tabsSel,itemsSel,key){
+function tabFilter(tabsSel,itemsSel,key,pg){
   const tabs=$(tabsSel);if(!tabs)return;
-  tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('button',tabs).forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});const k=b.dataset[key];const items=$$(itemsSel);items.forEach(c=>c.classList.toggle('out',k!=='all'&&c.dataset[key==='c'?'c':'k']!==k));const v=items.filter(c=>!c.classList.contains('out'));if(hasG&&!reduce)gsap.fromTo(v,{opacity:0,y:30},{opacity:1,y:0,duration:.7,stagger:.05,ease:'expo.out'});if(hasG)ScrollTrigger.refresh()});
+  tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('button',tabs).forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});const k=b.dataset[key];const items=$$(itemsSel);items.forEach(c=>c.classList.toggle('out',k!=='all'&&c.dataset[key==='c'?'c':'k']!==k));if(pg)pg.reset();const v=items.filter(c=>!c.classList.contains('out')&&!c.classList.contains('pg-hide'));if(hasG&&!reduce)gsap.fromTo(v,{opacity:0,y:30},{opacity:1,y:0,duration:.7,stagger:.05,ease:'expo.out'});if(hasG)ScrollTrigger.refresh()});
   $$('button',tabs).forEach(x=>x.setAttribute('aria-pressed',x.classList.contains('on')));
 }
-tabFilter('#cTabs','#cGrid .case','c');
-tabFilter('#aTabs','#aGrid .art','a');
+tabFilter('#cTabs','#cGrid .case','c',pager('cGrid'));
+tabFilter('#aTabs','#aGrid .art','a',pager('aGrid'));
 
 /* ---------- home: projects grid + case modal ---------- */
 const pjgrid=$('#pjgrid');let pjCat='all';

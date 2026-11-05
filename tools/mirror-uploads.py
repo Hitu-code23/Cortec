@@ -2,13 +2,16 @@
 """Mirror every WordPress upload the new site still references (images, data sheets, brochures)
 into ./wp-content/uploads/ so the same URLs keep working after the domain points at the new site.
 
-Run ONCE from the site root, BEFORE switching DNS, while the old WordPress site is still online:
+Run ONCE, BEFORE switching DNS, while the old WordPress site is still online:
     python3 tools/mirror-uploads.py
-Then deploy the site folder including wp-content/. Re-running only downloads missing files.
+- In the source repository it saves into static/wp-content/ (commit that folder; every build copies it).
+- In a built site folder it saves into wp-content/ next to index.html.
+Re-running only downloads missing files.
 """
 import os, sys, time, urllib.request, urllib.parse
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MAN = os.path.join(ROOT, 'tools', 'uploads-manifest.txt')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MAN = os.path.join(BASE_DIR, 'tools', 'uploads-manifest.txt')
+ROOT = os.path.join(BASE_DIR, 'static') if os.path.isdir(os.path.join(BASE_DIR, 'build')) else BASE_DIR
 urls = [u.strip() for u in open(MAN) if u.strip()]
 ok = skip = fail = 0
 for u in urls:

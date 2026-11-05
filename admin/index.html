@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cortec Middle East — Content Manager</title>
+<link rel="icon" href="../favicon.ico">
+</head>
+<body>
+<script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+<script>
+  // Arabic text boxes switch to right-to-left automatically
+  new MutationObserver(function () {
+    document.querySelectorAll('input:not([dir]), textarea:not([dir])').forEach(function (el) { el.setAttribute('dir', 'auto'); });
+  }).observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>

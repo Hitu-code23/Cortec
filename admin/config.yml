@@ -1,0 +1,221 @@
+# Cortec Middle East — content manager (Decap CMS)
+# Opens at https://cortec-me.com/admin/ . Every "Publish" saves a commit to the GitHub repository,
+# and the host rebuilds and redeploys the site automatically (about 1–2 minutes).
+backend:
+  name: github
+  repo: OWNER/REPOSITORY        # ← set to the GitHub repository, e.g. cortec-me/website
+  branch: main
+  # Hosted on Netlify: Netlify handles the GitHub login (Site configuration → Access & security → OAuth → Install provider → GitHub).
+  # Hosted elsewhere: run a Decap OAuth proxy and set its address here:
+  # base_url: https://cms-auth.example.com
+
+local_backend: true             # for local editing: run `npx decap-server` in the repository, then open /admin/
+site_url: https://cortec-me.com
+display_url: https://cortec-me.com
+logo_url: /assets/img/logo.png
+locale: en
+media_folder: uploads           # images and PDFs uploaded in the CMS
+public_folder: /uploads
+
+collections:
+  # ------------------------------------------------------------------ case studies
+  - name: cases
+    label: 'Case studies (English)'
+    label_singular: 'Case study'
+    description: 'Projects shown on /projects/ and on industry and application pages.'
+    folder: content/cases
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: '{{fields.slug}}'
+    summary: '{{title}} · {{date}} · {{industry}}'
+    sortable_fields: [date, title, industry]
+    view_filters:
+      - {label: 'Oil & Gas', field: industry, pattern: oil}
+      - {label: 'Construction', field: industry, pattern: cons}
+      - {label: 'Power & Water', field: industry, pattern: power}
+      - {label: 'Manufacturing', field: industry, pattern: mfg}
+    fields:
+      - {label: 'Title', name: title, widget: string}
+      - {label: 'URL slug', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase letters, numbers and hyphens only'], hint: 'Becomes cortec-me.com/<slug>/ — never change it after publishing.'}
+      - {label: 'Date', name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false}
+      - {label: 'Location', name: location, widget: string, required: false, hint: 'e.g. Abu Dhabi, UAE'}
+      - {label: 'Industry', name: industry, widget: select, options: [{label: 'Oil & Gas', value: oil}, {label: 'Construction', value: cons}, {label: 'Power & Water', value: power}, {label: 'Manufacturing', value: mfg}, {label: 'Marine', value: marine}, {label: 'Military & Defense', value: mil}]}
+      - {label: 'Products used', name: products, widget: list, required: false, field: {label: 'Product', name: product, widget: string}, hint: 'Exact names, e.g. VpCI®-337'}
+      - {label: 'Summary', name: summary, widget: text, hint: '1–2 sentences. Shown on cards and in Google results.'}
+      - {label: 'Images', name: images, widget: list, field: {label: 'Image', name: image, widget: image}, hint: 'The first image is the cover.'}
+      - label: 'Body sections'
+        name: sections
+        widget: list
+        summary: '{{fields.h}}'
+        hint: 'Each section = an optional heading, its paragraphs and optional bullet points. Product names such as VpCI®-337 link to their product page automatically.'
+        fields:
+          - {label: 'Heading', name: h, widget: string, required: false}
+          - {label: 'Paragraphs', name: p, widget: list, field: {label: 'Paragraph', name: para, widget: text}}
+          - {label: 'Bullet points', name: li, widget: list, required: false, field: {label: 'Point', name: point, widget: string}}
+      - {label: 'Hide from the website (draft)', name: draft, widget: boolean, required: false, default: false}
+      - {label: 'Old URL', name: url, widget: hidden, required: false}
+
+  - name: cases_ar
+    label: 'Case studies (Arabic) — دراسات الحالة'
+    label_singular: 'Arabic case study'
+    description: 'Arabic translations. A case study appears in Arabic only when its translation exists here, with the same slug.'
+    folder: content/cases_ar
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: '{{fields.slug}}'
+    fields:
+      - {label: 'Title (Arabic)', name: title, widget: string}
+      - {label: 'URL slug (must match the English version)', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Copy the slug of the English version'], hint: 'Copy it exactly from the English case study / article. The Arabic page is published at cortec-me.com/ar/<slug>/'}
+      - {label: 'Location (Arabic)', name: location, widget: string, required: false}
+      - {label: 'Summary (Arabic)', name: summary, widget: text}
+      - label: 'Body sections'
+        name: sections
+        widget: list
+        summary: '{{fields.h}}'
+        hint: 'Each section = an optional heading, its paragraphs and optional bullet points. Product names such as VpCI®-337 link to their product page automatically.'
+        fields:
+          - {label: 'Heading', name: h, widget: string, required: false}
+          - {label: 'Paragraphs', name: p, widget: list, field: {label: 'Paragraph', name: para, widget: text}}
+          - {label: 'Bullet points', name: li, widget: list, required: false, field: {label: 'Point', name: point, widget: string}}
+      - {label: 'date', name: date, widget: hidden, required: false}
+      - {label: 'industry', name: industry, widget: hidden, required: false}
+      - {label: 'products', name: products, widget: hidden, required: false}
+      - {label: 'images', name: images, widget: hidden, required: false}
+      - {label: 'url', name: url, widget: hidden, required: false}
+
+  # ------------------------------------------------------------------ news & articles
+  - name: articles
+    label: 'News & articles (English)'
+    label_singular: 'Post'
+    folder: content/articles
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: '{{fields.slug}}'
+    summary: '{{kind}} · {{date}} · {{title}}'
+    sortable_fields: [date, title, kind]
+    view_filters:
+      - {label: 'News', field: kind, pattern: News}
+      - {label: 'Articles', field: kind, pattern: Article}
+    fields:
+      - {label: 'Title', name: title, widget: string}
+      - {label: 'URL slug', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase letters, numbers and hyphens only'], hint: 'Becomes cortec-me.com/<slug>/ — never change it after publishing.'}
+      - {label: 'Type', name: kind, widget: select, options: ['News', 'Article'], default: 'News'}
+      - {label: 'Date', name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false}
+      - {label: 'Excerpt', name: excerpt, widget: text, hint: 'Max ~40 words. Shown on cards and in Google results.'}
+      - {label: 'Cover image', name: image, widget: image}
+      - {label: 'Tags', name: tags, widget: list, required: false}
+      - label: 'Body sections'
+        name: sections
+        widget: list
+        summary: '{{fields.h}}'
+        hint: 'Each section = an optional heading, its paragraphs and optional bullet points. Product names such as VpCI®-337 link to their product page automatically.'
+        fields:
+          - {label: 'Heading', name: h, widget: string, required: false}
+          - {label: 'Paragraphs', name: p, widget: list, field: {label: 'Paragraph', name: para, widget: text}}
+          - {label: 'Bullet points', name: li, widget: list, required: false, field: {label: 'Point', name: point, widget: string}}
+      - {label: 'Hide from the website (draft)', name: draft, widget: boolean, required: false, default: false}
+      - {label: 'Old URL', name: url, widget: hidden, required: false}
+
+  - name: articles_ar
+    label: 'News & articles (Arabic) — الأخبار والمقالات'
+    label_singular: 'Arabic post'
+    description: 'Arabic translations, matched to the English post by slug.'
+    folder: content/articles_ar
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: '{{fields.slug}}'
+    fields:
+      - {label: 'Title (Arabic)', name: title, widget: string}
+      - {label: 'URL slug (must match the English version)', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Copy the slug of the English version'], hint: 'Copy it exactly from the English case study / article. The Arabic page is published at cortec-me.com/ar/<slug>/'}
+      - {label: 'Excerpt (Arabic)', name: excerpt, widget: text}
+      - label: 'Body sections'
+        name: sections
+        widget: list
+        summary: '{{fields.h}}'
+        hint: 'Each section = an optional heading, its paragraphs and optional bullet points. Product names such as VpCI®-337 link to their product page automatically.'
+        fields:
+          - {label: 'Heading', name: h, widget: string, required: false}
+          - {label: 'Paragraphs', name: p, widget: list, field: {label: 'Paragraph', name: para, widget: text}}
+          - {label: 'Bullet points', name: li, widget: list, required: false, field: {label: 'Point', name: point, widget: string}}
+      - {label: 'kind', name: kind, widget: hidden, required: false}
+      - {label: 'date', name: date, widget: hidden, required: false}
+      - {label: 'image', name: image, widget: hidden, required: false}
+      - {label: 'tags', name: tags, widget: hidden, required: false}
+      - {label: 'url', name: url, widget: hidden, required: false}
+
+  # ------------------------------------------------------------------ products
+  - name: products
+    label: 'Products'
+    label_singular: 'Product'
+    description: 'Each product has its own page at /products/<slug>/ (English and Arabic) and appears in the product library.'
+    folder: content/products
+    format: json
+    extension: json
+    create: true
+    delete: true
+    identifier_field: n
+    slug: '{{fields.slug}}'
+    summary: '{{n}} · {{c}}'
+    sortable_fields: [order, n, c]
+    fields:
+      - {label: 'Product name', name: n, widget: string, hint: 'As printed on the data sheet, e.g. VpCI®-337'}
+      - {label: 'URL slug', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase letters, numbers and hyphens only'], hint: 'Becomes cortec-me.com/<slug>/ — never change it after publishing.'}
+      - {label: 'Category', name: c, widget: select, options: [{label: 'Surface preparation', value: prep}, {label: 'Rust preventives', value: rust}, {label: 'VpCI® powders', value: powder}, {label: 'VpCI® additives', value: additive}, {label: 'VpCI® packaging', value: pack}, {label: 'VpCI® emitters', value: emit}, {label: 'MCI® for concrete', value: mci}, {label: 'Lubricants', value: lube}, {label: 'CorroLogic® systems', value: corrologic}]}
+      - {label: 'Sort order', name: order, widget: number, value_type: int, default: 100}
+      - {label: 'Technical data sheet (PDF)', name: tds, widget: file, required: false, hint: 'Upload a PDF, or paste the address of an existing one'}
+      - {label: 'One-line description (English)', name: en, widget: text}
+      - {label: 'Summary (English)', name: summary_en, widget: text, required: false}
+      - {label: 'Features (English)', name: features_en, widget: list, required: false}
+      - {label: 'Typical applications (English)', name: applications_en, widget: list, required: false}
+      - {label: 'Metals / substrates (English)', name: metals_or_substrates_en, widget: string, required: false}
+      - {label: 'One-line description (Arabic)', name: ar, widget: text, required: false}
+      - {label: 'Summary (Arabic)', name: summary_ar, widget: text, required: false}
+      - {label: 'Features (Arabic)', name: features_ar, widget: list, required: false}
+      - {label: 'Typical applications (Arabic)', name: applications_ar, widget: list, required: false}
+      - {label: 'Metals / substrates (Arabic)', name: metals_or_substrates_ar, widget: string, required: false}
+
+  # ------------------------------------------------------------------ settings
+  - name: settings
+    label: 'Site settings'
+    files:
+      - name: general
+        label: 'General settings'
+        file: content/settings.json
+        fields:
+          - {label: 'WhatsApp number', name: whatsapp, widget: string, hint: 'International format, digits only, e.g. 971501234567'}
+          - {label: 'Enquiries email (used when no form service is set)', name: email, widget: string}
+          - {label: 'Form service endpoint', name: formEndpoint, widget: string, required: false, hint: 'e.g. https://formspree.io/f/xxxxxxx — receives contact, newsletter and manual-download forms'}
+          - {label: 'Google Tag Manager ID', name: gtmId, widget: string, required: false}
+          - {label: 'Live hostname', name: prodHost, widget: string, hint: 'Analytics and Google indexing only run on this hostname'}
+          - {label: 'Website address', name: siteUrl, widget: string}
+      - name: manuals
+        label: 'Rig lay-up manuals (gated downloads)'
+        file: content/manuals.json
+        fields:
+          - {label: 'Land-based rigs manual (PDF)', name: land_rigs, widget: file}
+          - {label: 'Offshore rigs manual (PDF)', name: offshore_rigs, widget: file}
+          - {label: 'Mothballing handbook (PDF)', name: mothballing, widget: file, required: false}
+          - {label: 'notes', name: notes, widget: hidden, required: false}
+      - name: redirects
+        label: 'Redirects (old address → new address)'
+        file: content/redirects.json
+        fields:
+          - label: 'Redirects'
+            name: redirects
+            widget: list
+            summary: '/{{fields.from}}/ → /{{fields.to}}'
+            fields:
+              - {label: 'Old address (without slashes)', name: from, widget: string}
+              - {label: 'New address (e.g. projects/ or media/#news)', name: to, widget: string, required: false}

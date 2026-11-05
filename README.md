@@ -6,10 +6,11 @@ The new cortec-me.com website, built by Velorien. It is a static site: plain HTM
 
 | Path | What it is |
 |---|---|
-| `index.html`, `about-us/`, `solutions/`, … | 117 English pages. Each page keeps the old site's URL wherever one existed. |
-| `ar/…` | 91 Arabic (RTL) pages, linked to the English pages with `hreflang`. |
+| `index.html`, `about-us/`, `solutions/`, … | 293 English pages, including all 122 case studies and 80 news posts and articles from the old site. Each page keeps the old site's URL. |
+| `ar/…` | 117 Arabic (RTL) pages, linked to the English pages with `hreflang`. Includes 12 case studies and 14 articles in Arabic. |
 | `products/<product>/` | One page per product (54), in English and Arabic. |
-| `<old-slug>/index.html` (194) | Redirect pages for old WordPress URLs that were merged or retired. |
+| `<old-slug>/index.html` (18) | Redirect pages for old WordPress URLs that were merged into other pages. |
+| `admin/` | The content manager (Decap CMS). It only works on the CMS-enabled hosting described in the source package's README. |
 | `assets/` | `css/site.css`, `js/site.js`, `js/data.js`, `js/config.js`, the search indexes, fonts, images and videos. |
 | `sitemap.xml`, `robots.txt` | Search engine files. The sitemap includes the Arabic alternates. |
 | `_redirects`, `.htaccess`, `nginx-redirects.conf`, `vercel.json` | Real 301 redirects. Use the one that matches your host. |
@@ -32,7 +33,7 @@ So the preview can never compete with the live site in Google.
 
 1. **Mirror the WordPress uploads. Do this before you change DNS.**
    Images, data sheets (TDS) and brochures still load from `https://cortec-me.com/wp-content/uploads/…`. Once the domain points at the new host, those files disappear unless you copy them first.
-   Run `python3 tools/mirror-uploads.py` from the site folder while the old site is still online. It downloads the 150 referenced files into `wp-content/uploads/…`, keeping the same paths. Deploy that folder with the site, and every URL keeps working, including Google Images and external links to the PDFs.
+   Run `python3 tools/mirror-uploads.py` from the site folder while the old site is still online. It downloads every referenced file (about 310) into `wp-content/uploads/…`, keeping the same paths. Deploy that folder with the site, and every URL keeps working, including Google Images and external links to the PDFs.
 2. **Connect the forms.**
    Open `assets/js/config.js` and set `formEndpoint` to your form service URL, for example Formspree, Basin or Getform. This connects the contact form, the newsletter and the gated rig lay-up manuals.
    Until you do this:
@@ -60,7 +61,6 @@ So the preview can never compete with the live site in Google.
    - product photography (product pages currently show a category icon)
    - the WhatsApp Business number (the floating button uses the landline for now)
    - a client testimonial
-   - the remaining 40 news posts and 111 case studies. These currently redirect to the News and Projects archives; the 14 newest articles and 12 key case studies have already been migrated.
    - the old Arabic URLs, if they differed from `/ar/<same-slug>/`, so they can be redirected too
 
 ## SEO built in
@@ -98,4 +98,4 @@ The brand green, #029d58, is kept for large type and graphics. Small text and bu
 
 ## Editing
 
-All pages are generated from structured content files by a build script, kept by Velorien. The proposal recommends a CMS phase so that Cortec staff can edit pages, products and posts themselves.
+This folder is the built output. The editable source (content files, build script and the content manager at `/admin/`) is in the separate source package; see its README.
