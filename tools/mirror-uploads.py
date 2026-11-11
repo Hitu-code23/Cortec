@@ -15,7 +15,10 @@ ROOT = os.path.join(BASE_DIR, 'static') if os.path.isdir(os.path.join(BASE_DIR, 
 urls = [u.strip() for u in open(MAN) if u.strip()]
 ok = skip = fail = 0
 for u in urls:
-    path = urllib.parse.unquote(urllib.parse.urlparse(u).path).lstrip('/')
+    pu = urllib.parse.urlparse(u)
+    path = urllib.parse.unquote(pu.path).lstrip('/')
+    if pu.hostname != 'cortec-me.com':          # files from other Cortec sites (e.g. rig manuals) go under wp-content/ext/<host>/
+        path = 'wp-content/ext/' + pu.hostname + '/' + path
     dest = os.path.join(ROOT, path)
     if os.path.exists(dest) and os.path.getsize(dest) > 0:
         skip += 1; continue
