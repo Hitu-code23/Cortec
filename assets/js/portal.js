@@ -11,6 +11,7 @@ const L=AR?{
   nodocs:'لا توجد مستندات بعد.',noorders:'لا توجد طلبات أو عروض أسعار بعد.',open:'فتح',dl:'تنزيل',
   pending:'حسابك قيد المراجعة. سيقوم فريق كورتك بتفعيله قريباً.',ref:'المرجع',status:'الحالة',amount:'المبلغ',updated:'آخر تحديث',notes:'ملاحظات',
   name:'الاسم',company:'الشركة',save:'حفظ',saved:'تم الحفظ.',newpw:'كلمة مرور جديدة (8 أحرف على الأقل)',chpw:'تغيير كلمة المرور',pwdone:'تم تغيير كلمة المرور.',
+  idle:'تم تسجيل خروجك بعد 30 دقيقة من عدم النشاط. يرجى تسجيل الدخول مرة أخرى.',
   admin:'لوحة الإدارة',customers:'العملاء',err:'حدث خطأ',quote:'عرض سعر',order:'طلب',
   st:{pending:'قيد الانتظار',quoted:'تم إرسال العرض',confirmed:'مؤكد',in_production:'قيد التجهيز',shipped:'تم الشحن',delivered:'تم التسليم',cancelled:'ملغى'}
 }:{
@@ -20,6 +21,7 @@ const L=AR?{
   nodocs:'No documents yet.',noorders:'No orders or quotes yet.',open:'Open',dl:'Download',
   pending:'Your account is waiting for approval. The Cortec team will activate it shortly.',ref:'Ref',status:'Status',amount:'Amount',updated:'Updated',notes:'Notes',
   name:'Name',company:'Company',save:'Save',saved:'Saved.',newpw:'New password (8+ characters)',chpw:'Change password',pwdone:'Password changed.',
+  idle:'You were signed out after 30 minutes of inactivity. Please sign in again.',
   admin:'Admin',customers:'Customers',err:'Something went wrong',quote:'Quote',order:'Order',
   st:{pending:'Pending',quoted:'Quote sent',confirmed:'Confirmed',in_production:'In production',shipped:'Shipped',delivered:'Delivered',cancelled:'Cancelled'}
 };
@@ -50,19 +52,22 @@ function loginView(msg){
   const f=$('form');f.addEventListener('submit',async e=>{e.preventDefault();const b=$('button',f);b.disabled=true;b.textContent=L.wait;
     const {error}=await sb.auth.signInWithPassword({email:f.e.value.trim(),password:f.p.value});
     if(error){b.disabled=false;b.textContent=L.go;$('.pt__err',f).textContent=L.bad;return}
-    boot()});
+    lsSet(Date.now());boot()});
 }
 
 /* ---------- shell ---------- */
 async function boot(){
   const {data:{session}}=await sb.auth.getSession();
   if(!session){loginView();return}
+  {const l=lsGet();if(l&&Date.now()-l>IDLE){await sb.auth.signOut();lsSet(0);loginView(L.idle);return}}
+  lsSet(Date.now());
   const {data,error}=await sb.from('profiles').select('*').eq('id',session.user.id).single();
   if(error||!data){await sb.auth.signOut();loginView(L.err);return}
   me=data;
   const isA=me.role==='admin'&&me.approved;
   const tabs=isA?[['a-cust',L.customers],['a-docs',AR?'المستندات':'Documents'],['a-ord',L.orders],['acct',L.acct]]
                 :[['docs',L.docs],['orders',L.orders],['shared',L.shared],['acct',L.acct]];
+  const hs=location.hash.replace('#','');if(!tab&&tabs.some(t=>t[0]===hs))tab=hs;
   tab=tab&&tabs.some(t=>t[0]===tab)?tab:tabs[0][0];
   root.innerHTML=`<div class="pt__bar"><div><small>${L.hi}${isA?' · '+L.admin:''}</small><b>${esc(me.full_name||me.email)}</b>${me.company?`<span>${esc(me.company)}</span>`:''}</div>
     <button class="pt__btn pt__btn--line" type="button" data-out>${L.out}</button></div>
@@ -129,6 +134,11 @@ async function api(body){
   const r=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json',apikey:CFG.sbKey,Authorization:'Bearer '+session.access_token},body:JSON.stringify(body)});
   const j=await r.json().catch(()=>({error:L.err}));if(!r.ok||j.error)throw new Error(j.error||L.err);return j;
 }
+const PURL=location.origin+location.pathname;
+let mailCfg=null;
+async function mailStatus(){if(mailCfg===null){try{mailCfg=(await api({action:'email_status'})).configured}catch(e){mailCfg=false}}return mailCfg}
+function mailMsg(m,pre){if(!m)return '';if(!m.configured)return pre+'email not sent (emails are not switched on yet)';if(m.error)return pre+'email failed';return m.sent?pre+(m.sent===1?'email sent':m.sent+' emails sent'):pre+'no one to email'}
+async function mailNote(){const on=await mailStatus();$$('[data-mailnote]').forEach(n=>{if(!on)n.innerHTML='<b>Emails are not switched on yet</b> — send the login details yourself for now (WhatsApp or email).'});}
 async function loadUsers(){const j=await api({action:'list'});users=j.users;return users}
 const custName=id=>{if(!id)return AR?'مشترك (جميع العملاء)':'Shared (all customers)';const u=users.find(x=>x.id===id);return u?(u.company?u.company+' — ':'')+(u.full_name||u.email):'—'};
 const custOpts=(sel,withShared)=>(withShared?`<option value="">${custName(null)}</option>`:'')+users.filter(u=>u.role==='customer').map(u=>`<option value="${u.id}"${u.id===sel?' selected':''}>${esc(custName(u.id))}</option>`).join('');
@@ -140,7 +150,8 @@ async function aCust(){
     <div class="pt__row"><label>${L.name}<input name="n" required></label><label>${L.company}<input name="c"></label></div>
     <div class="pt__row"><label>${L.email}<input name="e" type="email" required dir="ltr"></label><label>Password (8+ characters)<input name="p" required minlength="8" dir="ltr" autocomplete="off"></label></div>
     <div class="pt__row"><label>Role<select name="r"><option value="customer">Customer</option><option value="admin">Cortec staff (admin)</option></select></label><span></span></div>
-    <button class="pt__btn" type="submit">Create login</button><p class="pt__muted pt__small">Send the email and password to the customer yourself. They can change the password under “${L.acct}”.</p></form>
+    <label class="pt__chk"><input type="checkbox" name="m" checked> Email the login details to this person</label>
+    <button class="pt__btn" type="submit">Create login</button><p class="pt__muted pt__small" data-mailnote>They can change the password under “${L.acct}” after signing in.</p></form>
     <div class="pt__table"><table><thead><tr><th>${L.name}</th><th>${L.company}</th><th>${L.email}</th><th>Role</th><th>Access</th><th></th></tr></thead><tbody>
     ${users.map(u=>`<tr><td>${esc(u.full_name||'')}</td><td>${esc(u.company||'')}</td><td dir="ltr">${esc(u.email)}</td><td>${u.role==='admin'?'Admin':'Customer'}</td>
       <td>${u.approved?'<span class="pt__st pt__st--delivered">Active</span>':'<span class="pt__st pt__st--cancelled">Blocked</span>'}</td>
@@ -148,8 +159,10 @@ async function aCust(){
       <button type="button" class="pt__btn pt__btn--sm pt__btn--line" data-ap="${u.id}" data-v="${u.approved?0:1}">${u.approved?'Block':'Activate'}</button>
       <button type="button" class="pt__btn pt__btn--sm pt__btn--danger" data-delu="${u.id}">Delete</button>`}</td></tr>`).join('')}
     </tbody></table></div>`;
+  mailNote();
   $('[data-f=newu]').onsubmit=async e=>{e.preventDefault();const f=e.target,b=$('button',f);b.disabled=true;
-    try{await api({action:'create',full_name:f.n.value.trim(),company:f.c.value.trim(),email:f.e.value.trim(),password:f.p.value,role:f.r.value});toast('Login created for '+f.e.value.trim());aCust()}
+    try{const j=await api({action:'create',full_name:f.n.value.trim(),company:f.c.value.trim(),email:f.e.value.trim(),password:f.p.value,role:f.r.value,send_email:f.m.checked,portal_url:PURL});
+      toast('Login created for '+f.e.value.trim()+(f.m.checked?mailMsg(j.mail,' — '):''));aCust()}
     catch(x){toast(x.message,true);b.disabled=false}};
 }
 async function aDocs(){
@@ -161,7 +174,8 @@ async function aDocs(){
     <div class="pt__row"><label>Who can see it<select name="c">${custOpts('',true)}</select></label><label>Category<input name="k" value="General" list="ptcats"><datalist id="ptcats"><option>Quotation</option><option>Invoice</option><option>Technical data sheet</option><option>Safety data sheet</option><option>Certificate</option><option>Report</option><option>Brochure</option><option>General</option></datalist></label></div>
     <div class="pt__row"><label>Title<input name="t" required></label><label>Arabic title (optional)<input name="ta" dir="rtl"></label></div>
     <label>File (max 50 MB)<input name="f" type="file" required></label>
-    <button class="pt__btn" type="submit">Upload</button></form>
+    <label class="pt__chk"><input type="checkbox" name="m" checked> Email the customer(s) that a new document is available</label>
+    <button class="pt__btn" type="submit">Upload</button><p class="pt__muted pt__small" data-mailnote></p></form>
     ${data.length?'<div class="pt__docs">'+data.map(d=>docCard(d,true)).join('')+'</div>':'<p class="pt__empty">'+L.nodocs+'</p>'}`;
   $('[data-f=up]').onsubmit=async e=>{e.preventDefault();const f=e.target,b=$('button[type=submit]',f),file=f.f.files[0];if(!file)return;
     if(file.size>50*1024*1024){toast('File is larger than 50 MB',true);return}
@@ -170,9 +184,12 @@ async function aDocs(){
     const path=(f.c.value||'shared')+'/'+Date.now()+'-'+safe;
     const up=await sb.storage.from('portal').upload(path,file,{contentType:file.type||undefined,upsert:false});
     if(up.error){toast(up.error.message,true);b.disabled=false;b.textContent='Upload';return}
-    const {error}=await sb.from('documents').insert({title:f.t.value.trim(),title_ar:f.ta.value.trim()||null,category:f.k.value.trim()||'General',file_path:path,customer_id:f.c.value||null,created_by:me.id});
+    const {data:row,error}=await sb.from('documents').insert({title:f.t.value.trim(),title_ar:f.ta.value.trim()||null,category:f.k.value.trim()||'General',file_path:path,customer_id:f.c.value||null,created_by:me.id}).select('id').single();
     if(error){await sb.storage.from('portal').remove([path]);toast(error.message,true);b.disabled=false;b.textContent='Upload';return}
-    toast('Uploaded');aDocs()};
+    let msg='Uploaded';
+    if(f.m.checked){try{const j=await api({action:'notify_document',id:row.id,portal_url:PURL});msg+=mailMsg(j.mail,' — ')}catch(x){msg+=' — email failed: '+x.message}}
+    toast(msg);aDocs()};
+  mailNote();
 }
 async function aOrd(){
   pane().innerHTML='<p class="pt__muted">'+L.wait+'</p>';
@@ -249,6 +266,16 @@ function enhance(sel){
 function closeAll(except){$$('.pt__dd.open').forEach(d=>{if(d!==except&&d._close)d._close()})}
 document.addEventListener('click',e=>{if(!e.target.closest('.pt__dd'))closeAll()});
 new MutationObserver(()=>$$('select:not(.pt__dd-n)').forEach(enhance)).observe(root,{childList:true,subtree:true});
+
+/* ---------- auto sign-out after 30 minutes without activity ---------- */
+const IDLE=30*60*1000,LK='cx_portal_last';
+const lsGet=()=>{try{return +localStorage.getItem(LK)||0}catch(e){return 0}};
+const lsSet=v=>{try{localStorage.setItem(LK,String(v))}catch(e){}};
+let lastW=0;const touch=()=>{const n=Date.now();if(n-lastW>15000){lastW=n;lsSet(n)}};
+['pointerdown','keydown','scroll','touchstart','visibilitychange'].forEach(ev=>addEventListener(ev,()=>{if(me&&!document.hidden)touch()},{passive:true}));
+async function idleCheck(){if(!me)return;const l=lsGet();if(l&&Date.now()-l>IDLE){me=null;tab=null;await sb.auth.signOut();loginView(L.idle)}}
+setInterval(idleCheck,30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)idleCheck()});
 
 sb.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&me){me=null;loginView()}});
 boot();
