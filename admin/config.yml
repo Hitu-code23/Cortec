@@ -3,7 +3,7 @@
 # and the host rebuilds and redeploys the site automatically (about 1–2 minutes).
 backend:
   name: github
-  repo: OWNER/REPOSITORY        # ← set to the GitHub repository, e.g. cortec-me/website
+  repo: Hitu-code23/cortec-cms-test   # ← GitHub repository (change to Cortec's own repository at handover)
   branch: main
   # Hosted on Netlify: Netlify handles the GitHub login (Site configuration → Access & security → OAuth → Install provider → GitHub).
   # Hosted elsewhere: run a Decap OAuth proxy and set its address here:
@@ -22,7 +22,7 @@ collections:
   - name: cases
     label: 'Case studies (English)'
     label_singular: 'Case study'
-    description: 'Projects shown on /projects/ and on industry and application pages.'
+    description: 'Projects shown on /projects/ and on industry and application pages. Arabic version: open "Case studies (Arabic)", click New, and use the same URL slug.'
     folder: content/cases
     format: json
     extension: json
@@ -93,6 +93,7 @@ collections:
   - name: articles
     label: 'News & articles (English)'
     label_singular: 'Post'
+    description: 'News posts and articles on /media/. Arabic version: open "News & articles (Arabic)", click New, and use the same URL slug.'
     folder: content/articles
     format: json
     extension: json
@@ -174,6 +175,7 @@ collections:
       - {label: 'URL slug', name: slug, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase letters, numbers and hyphens only'], hint: 'Becomes cortec-me.com/<slug>/ — never change it after publishing.'}
       - {label: 'Category', name: c, widget: select, options: [{label: 'Surface preparation', value: prep}, {label: 'Rust preventives', value: rust}, {label: 'VpCI® powders', value: powder}, {label: 'VpCI® additives', value: additive}, {label: 'VpCI® packaging', value: pack}, {label: 'VpCI® emitters', value: emit}, {label: 'MCI® for concrete', value: mci}, {label: 'Lubricants', value: lube}, {label: 'CorroLogic® systems', value: corrologic}]}
       - {label: 'Sort order', name: order, widget: number, value_type: int, default: 100}
+      - {label: 'Product photo', name: image, widget: image, required: false, hint: 'Square or 4:3, white background works best. Shows on the product page and in the product library.'}
       - {label: 'Technical data sheet (PDF)', name: tds, widget: file, required: false, hint: 'Upload a PDF, or paste the address of an existing one'}
       - {label: 'One-line description (English)', name: en, widget: text}
       - {label: 'Summary (English)', name: summary_en, widget: text, required: false}
@@ -200,6 +202,76 @@ collections:
           - {label: 'Google Tag Manager ID', name: gtmId, widget: string, required: false}
           - {label: 'Live hostname', name: prodHost, widget: string, hint: 'Analytics and Google indexing only run on this hostname'}
           - {label: 'Website address', name: siteUrl, widget: string}
+      - name: site_text
+        label: 'Home page & site text'
+        file: content/site_text.json
+        description: 'Leave a box empty to keep the current text. Write *word* for bold, **word** for green bold. Fill in both English and Arabic.'
+        fields:
+          - label: 'Home page text'
+            name: home
+            widget: object
+            collapsed: true
+            fields:
+              - {label: 'Hero — small line above the headline', name: hero_eyebrow, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Hero — main headline', name: hero_headline, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Hero — paragraph under the headline', name: hero_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Hero — location badge on the photo', name: hero_location, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Intro animation — small line', name: intro_line, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Intro animation — headline', name: intro_headline, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Client logos — heading', name: trust_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'About — big statement', name: about_statement, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'About — paragraph', name: about_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Stat 1 — label (countries)', name: stat1_label, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 1 — small text', name: stat1_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 2 — label (founded)', name: stat2_label, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 2 — small text', name: stat2_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 3 — label (patents)', name: stat3_label, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 3 — small text', name: stat3_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 4 — label (facilities)', name: stat4_label, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Stat 4 — small text', name: stat4_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Solutions — heading', name: solutions_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Solutions — paragraph', name: solutions_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Technologies — heading', name: technologies_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Technologies — paragraph', name: technologies_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Industries — heading', name: industries_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Industries — paragraph', name: industries_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Projects — heading', name: projects_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Projects — paragraph', name: projects_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Sustainability — heading', name: sustainability_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Sustainability — paragraph', name: sustainability_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+              - {label: 'Talk to our experts — small line', name: experts_small, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Talk to our experts — heading', name: experts_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+          - label: 'Site-wide text (menu, footer, cookie banner)'
+            name: site
+            widget: object
+            collapsed: true
+            fields:
+              - {label: 'Short address (menu, footer, contact)', name: address_short, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Footer — newsletter heading', name: newsletter_heading, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Footer — newsletter text', name: newsletter_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: string, required: false}, {label: 'Arabic — العربية', name: ar, widget: string, required: false}]}
+              - {label: 'Cookie banner — text', name: cookie_text, widget: object, collapsed: true, fields: [{label: 'English', name: en, widget: text, required: false}, {label: 'Arabic — العربية', name: ar, widget: text, required: false}]}
+          - label: 'Numbers (home page stats)'
+            name: numbers
+            widget: object
+            collapsed: true
+            fields:
+              - {label: 'Countries served (e.g. 121)', name: countries, widget: string, required: false}
+              - {label: 'Year founded (e.g. 1977)', name: founded, widget: string, required: false}
+              - {label: 'Number of patents (e.g. 65)', name: patents, widget: string, required: false}
+              - {label: 'Manufacturing facilities (e.g. 8)', name: facilities, widget: string, required: false}
+      - name: page_images
+        label: 'Page images (main picture at the top of each page)'
+        file: content/page_images.json
+        fields:
+          - {label: 'Home', name: home, widget: image, required: false, hint: 'Leave empty to keep the current picture. Wide landscape images work best (at least 1600 px wide).'}
+          - {label: 'Who We Are', name: about, widget: image, required: false}
+          - {label: 'Sustainability', name: sustainability, widget: image, required: false}
+          - {label: 'Solutions', name: solutions, widget: image, required: false}
+          - {label: 'Products', name: products, widget: image, required: false}
+          - {label: 'Industries', name: industries, widget: image, required: false}
+          - {label: 'Projects', name: projects, widget: image, required: false}
+          - {label: 'Media', name: media, widget: image, required: false}
+          - {label: 'Contact', name: contact, widget: image, required: false}
       - name: manuals
         label: 'Rig lay-up manuals (gated downloads)'
         file: content/manuals.json
