@@ -202,6 +202,8 @@ collections:
           - {label: 'Google Tag Manager ID', name: gtmId, widget: string, required: false}
           - {label: 'Live hostname', name: prodHost, widget: string, hint: 'Analytics and Google indexing only run on this hostname'}
           - {label: 'Website address', name: siteUrl, widget: string}
+          - {label: 'Client portal — Supabase URL', name: supabaseUrl, widget: string, required: false, hint: 'Do not change unless the portal database moves'}
+          - {label: 'Client portal — Supabase publishable key', name: supabaseKey, widget: string, required: false, hint: 'Public key (safe to show). Never put the secret/service key here.'}
       - name: site_text
         label: 'Home page & site text'
         file: content/site_text.json

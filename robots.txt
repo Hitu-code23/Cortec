@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /portal/
+Disallow: /ar/portal/
 Disallow: /404.html
 Disallow: /ar/404.html
 
